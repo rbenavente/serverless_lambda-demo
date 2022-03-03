@@ -8,7 +8,7 @@ node {
         checkout scm
     }
 
-
+// You can scan functions using one of these methods: Prisma Cloud Jenkins plugin or twiscli. 
 
     stage('Scan Function and Publish to Jenkins') {
         try {
