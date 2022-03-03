@@ -18,6 +18,7 @@ node {
         }
     }
 
+    // twistcli only when Jenkins plugin is not installed 
     stage('Scan function with twistcli') {
         withCredentials([usernamePassword(credentialsId: 'twistlock_creds', passwordVariable: 'TL_PASS', usernameVariable: 'TL_USER')]) {
             sh 'curl -k -u $TL_USER:$TL_PASS --output ./twistcli https://$TL_CONSOLE/api/v1/util/twistcli'
