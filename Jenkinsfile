@@ -10,7 +10,7 @@ node {
 
     stage('Zip lambda  Function') {
        sh 'zip myFunction.zip lambda_function.py'
-        }
+        
     }
     
 // You can scan functions using one of these methods: Prisma Cloud Jenkins plugin or twiscli. 
