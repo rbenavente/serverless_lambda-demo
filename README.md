@@ -1,10 +1,15 @@
 # lambda_sample
-Prisma Cloud can scan serverless functions for vulnerabilities. Prisma Cloud supports AWS Lambda, Google Cloud Functions, and Azure Functions.Prisma Cloud can scan Node.js, Python, Java, C#, Ruby, and Go packages.
 
-Scanning functions at build time with twistcli
-You can also use the twistcli command line utility to scan your serverless functions. First download your serverless function as a ZIP file, then run:
+Prisma Cloud supports AWS Lambda, Google Cloud Functions, and Azure Functions.
+Serverless vulnerability and compliance scanning supported by Prisma Cloud
+C# (.NET Core) 3.1
+Java 8, Java 11
+Node.js 12.x, 14.x
+Python 3.6, 3.7 and 3.8
+Ruby 2.7
+Go 1.x
 
-$ twistcli serverless scan <SERVERLESS_FUNCTION.ZIP>
+You can scan vulnerabilities using the Jenkins plugin or the  "twistcli" binary  but please  be aware that your  serverless function should be packaged as ZIP file.
 
 * Jenkins pre-reqs
   * Plugins
