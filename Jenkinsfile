@@ -9,7 +9,7 @@ node {
     }
 
     stage('Zip lambda  Function') {
-       sh 'zip myFunction.zip lambda_function.py'
+     zip dir: './code', glob: '', zipFile: 'myFunction.zip'
         
     }
     
@@ -17,7 +17,7 @@ node {
 
     stage('Scan Function and Publish to Jenkins') {
         try {
-            prismaCloudScanFunction cloudFormationTemplateFile: '', functionName: 'myFunction', functionPath: 'myFunction.zip', logLevel: 'info', project: '', resultsFile: 'prisma-cloud-scan-results.json'
+            prismaCloudScanFunction cloudFormationTemplateFile: '', functionName: 'code', functionPath: 'myFunction.zip', logLevel: 'info', project: '', resultsFile: 'prisma-cloud-scan-results.json'
         } finally {
             prismaCloudPublish resultsFilePattern: 'prisma-cloud-scan-results.json'
         }
