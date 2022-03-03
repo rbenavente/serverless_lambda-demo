@@ -8,11 +8,16 @@ node {
         checkout scm
     }
 
+    stage('Zip lambda  Function') {
+       sh 'zip myFunction.zip lambda_function.py'
+        }
+    }
+    
 // You can scan functions using one of these methods: Prisma Cloud Jenkins plugin or twiscli. 
 
     stage('Scan Function and Publish to Jenkins') {
         try {
-            prismaCloudScanFunction cloudFormationTemplateFile: '', functionName: 'hello-word-python-rbc', functionPath: 'hello-word-python-rbc.zip', logLevel: 'info', project: '', resultsFile: 'prisma-cloud-scan-results.json'
+            prismaCloudScanFunction cloudFormationTemplateFile: '', functionName: 'myFunction', functionPath: 'myFunction.zip', logLevel: 'info', project: '', resultsFile: 'prisma-cloud-scan-results.json'
         } finally {
             prismaCloudPublish resultsFilePattern: 'prisma-cloud-scan-results.json'
         }
@@ -23,7 +28,7 @@ node {
         withCredentials([usernamePassword(credentialsId: 'twistlock_creds', passwordVariable: 'TL_PASS', usernameVariable: 'TL_USER')]) {
             sh 'curl -k -u $TL_USER:$TL_PASS --output ./twistcli https://$TL_CONSOLE/api/v1/util/twistcli'
             sh 'sudo chmod a+x ./twistcli'        
-            sh './twistcli serverless scan --u $TL_USER --p $TL_PASS --address https://$TL_CONSOLE --details --publish hello-word-python-rbc.zip'
+            sh './twistcli serverless scan --u $TL_USER --p $TL_PASS --address https://$TL_CONSOLE --details --publish myFunction.zip'
         } 
     }
 
