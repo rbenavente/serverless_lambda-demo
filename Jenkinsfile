@@ -17,7 +17,7 @@ node {
 
     stage('Scan Function and Publish to Jenkins') {
         try {
-            prismaCloudScanFunction cloudFormationTemplateFile: '', functionName: 'code', functionPath: 'myFunction.zip', logLevel: 'info', project: '', resultsFile: 'prisma-cloud-scan-results.json'
+            prismaCloudScanFunction cloudFormationTemplateFile: '', functionName: 'myFunction', functionPath: 'myFunction.zip', logLevel: 'info', project: '', resultsFile: 'prisma-cloud-scan-results.json'
         } finally {
             prismaCloudPublish resultsFilePattern: 'prisma-cloud-scan-results.json'
         }
